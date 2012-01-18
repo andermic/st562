@@ -1,0 +1,220 @@
+\documentclass{article}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{enumerate}
+\author{Michael Anderson}
+\title{Homework 1}
+\begin{document}
+\setlength{\parskip}{1em}
+\maketitle
+\center{ST562}
+\flushleft
+\newpage
+
+\section{6.2.1}
+\[
+f_X(x) = p^2(1-p)^{x_1}(1-p)^{x_2} = p^2(1-p)^{x_1+x_2}
+\]
+
+\[
+f_T(t) = \sum_0^t p(1-p)^i p(1-p)^{t-i} = p^2(t+1)(1-p)^t
+\]
+
+\[
+\frac{f_X(x)}{f_T(t)} = \frac{p^2(1-p)^{x_1+x_2}}{p^2(t+1)(1-p)^{x_1+x_2}} =
+\frac{1}{t+1}
+\]
+
+$\frac{f_X(x)}{f_T(t)}$ is not a function of $p$.
+
+\section{6.2.2}
+Substituting in $1-p$ for $q$, and letting $\hat x = \sum_0^m x_i$ and 
+$\hat y = \sum_0^n y_i$ gives:
+\[
+f_{X,Y}(x,y) = \left( \prod_1^m p^{x_i}(1-p)^{1-x_i} \right)
+\left( \prod_1^n p^{1-y_i}(1-p)^{y_i} \right) =
+p^{n+\hat x - \hat y}(1-p)^{m-\hat x + \hat y}
+\]
+
+$\hat X$ is distributed $Bin(p,m), \hat Y$ is distributed 
+$Bin(1-p,n), T = \hat X - \hat Y$. Using the discrete version of convolution for
+subtracting random variables we have:
+
+\[
+f_T(t) = \sum_0^n f_{\hat Y}(\hat{y_i})f_{\hat X}(t+\hat{y_i}) =
+\]
+
+\[
+\sum_0^n \left[ C^n_{\hat{y_i}} p^{n-\hat{y_i}}(1-p)^{\hat{y_i}}
+C^m_{t+\hat{y_i}} p^{t+\hat{y_i}}(1-p)^{m-(t+y_i)}\right] =
+\]
+
+\[
+p^{n+t}(1-p)^{m-t} \sum_0^nC^n_{\hat{y_i}}C^m_{t+\hat{y_i}}
+\]
+
+\[
+\frac{f_{X,Y}(x,y)}{f_T(t)} = \frac{p^{n+\hat x - \hat y}(1-p)^{m-\hat x + 
+\hat y}}{p^{n+t}(1-p)^{m-t} \sum_0^nC^n_{\hat{y_i}}C^m_{t+\hat{y_i}}} =
+\frac{1}{\sum_0^nC^n_{\hat{y_i}}C^m_{t+\hat{y_i}}}
+\]
+
+$\frac{f_{X,Y}(x,y)}{f_T(t)}$ is not a function of $p$.
+
+\section{6.2.5}
+Using the resulting form of $f_{X,Y}(x,y)$ from the previous problem:
+\[
+f_{X,Y}(x,y) = p^{3+(x_1+x_2)-(y_1+y_2+y_3)}(1-p)^{2-(x_1+x_2)+(y_1+y_2+y_3)}
+\]
+
+$Y_1Y_2 = 1$ iff $Y_1 = Y_2 = 1$, so:
+
+\[
+f_{Y_1Y_2}(y) = (q^2)^y(1-q^2)^{1-y} = (1-p)^{2y} \left[ 1-(1-p)^2 \right]^{1-y}
+\]
+
+Now by discrete convolution, where $T = X_1+Y_1Y_2$ :
+
+\[
+f_T(t) = f_X(t)f_{Y_1Y_2}(0) + f_X(t-1)f_{Y_1Y_2}(1) = p^t(1-p)^{1-t}p^2 +
+p^{t-1}(1-p)^{1-(t-1)}(1-p^2) =
+\]
+
+\[
+p^{t+2}(1-p)^{1-t}+p^{t-1}(1-p)^{2-t}(1-p^2)
+\]
+
+\[
+\frac{f_{X,Y}(x,y)}{f_T(t)} = \frac{p^{3+(x_1+x_2)-(y_1+y_2+y_3)}(1-p)^
+{2-(x_1+x_2)+(y_1+y_2+y_3)}} {p^{t+2}(1-p)^{1-t}+p^{t-1}(1-p)^{2-t}(1-p^2)}
+\]
+
+Cannot cancel out $p$'s out of the above, $\frac{f_{X,Y}(x,y)}{f_T(t)}$ is a
+function of $p$.
+
+\section{6.2.6}
+\[
+f_{X,Y}(x,y) = \prod_1^m \frac{\lambda^{x_i}e^{-\lambda}}{x_i!}
+\prod_1^n \frac{2^{y_i}\lambda^{y_i}e^{-2\lambda}}{y_i!} =
+\frac{2^{(\sum_0^n y_i)}\lambda^{(\sum_0^m x_i) + (\sum_0^n y_i)}e^{-\lambda(m+2n)}}
+{(\prod_1^m x_i!)(\prod_1^n y_i!)}
+\]
+
+Since $Poisson(\lambda_1) + Poisson(\lambda_2) = Poisson(\lambda_1+\lambda_2)$:
+
+\[
+f_T(t) = \frac{(\lambda[m+2n])^t \hspace{2pt} e^{-\lambda(m+2n)}}{t!}
+\]
+
+\[
+\frac{f_{X,Y}(x,y)}{f_T(t)} = \frac{\frac{2^{(\sum_0^n y_i)}\lambda^{(\sum_0^m x_i) + (\sum_0^n y_i)}e^{-\lambda(m+2n)}}{(\prod_1^m x_i!)(\prod_1^n y_i!)}}
+{\frac{(\lambda[m+2n])^t \hspace{2pt} e^{-\lambda(m+2n)}}{t!}} =
+\frac{2^{(\sum_0^n y_1)}t!}{(\prod_1^m x_i!)(\prod_1^n y_i!)(m+2n)^t}
+\]
+
+$\frac{f_{X,Y}(x,y)}{f_T(t)}$ is not a function of $\lambda$.
+
+\section{6.2.7}
+\[
+f_{X,Y}(x,y) = \frac{2^{(\sum_1^5 y_i)} \lambda^{(\sum_1^4 x_i) + (\sum_1^5 y_1)e^{-14\lambda}}}
+{(\prod_1^4) x_i!)(\prod_1^5 y_i!)}
+\]
+
+\[
+f_T(t) = \frac{(3\lambda)^t e^{-3\lambda}}{t!}
+\]
+
+\[
+\frac{f_{X,Y}(x,y)}{f_T(t)} = \frac{\frac{2^{(\sum_1^5 y_i)} \lambda^{(\sum_1^4 x_i) + (\sum_1^5 y_1)e^{-14\lambda}}} {(\prod_1^4) x_i!)(\prod_1^5 y_i!)}}
+{\frac{(3\lambda)^t e^{-3\lambda}}{t!}} =
+\]
+
+\[
+\frac{2^{(\sum_1^5)}}{3^t} \lambda^{(\sum_2^m x_i) + (\sum_2^n y_i)}
+e^{-11\lambda} \frac{t!}{(\prod_1^m x_i)(\prod_1^n y_i)}
+\]
+
+Cannot cancel $p$'s from above, $\frac{f_{X,Y}(x,y)}{f_T(t)}$ is a function of
+$p$.
+
+\section{6.2.10}
+\begin{enumerate}[(i)]
+\item
+\[
+f_X(x) = \frac{1}{(2\pi\sigma^2)^{n/2}} \hspace{2pt}
+\text{exp} \left\{ -\frac{\sum_1^n(x_i-\mu)^2}{2\sigma^2} \right\} =
+\]
+
+\[
+\frac{1}{(2\pi\sigma^2)^{n/2}} \hspace{2pt}
+\text{exp} \left\{ -\frac{\sum_1^n(x_i^2-2x_i\mu+\mu^2)}{2\sigma^2} \right\} =
+\]
+ 
+\[
+\frac{1}{(2\pi\sigma^2)^{n/2}} \hspace{2pt}
+\text{exp} \left\{ -\frac{\sum_1^n x_i^2}{2\sigma^2} \right\}
+\text{exp} \left\{ n\frac{2\mu n^{-1}\sum_1^n x_i -\mu^2}{2\sigma^2} \right\}
+\]
+
+\hspace{3em}
+
+\item
+\[
+f_X(x) = \frac{1}{(2\pi\sigma^2)^{n/2}} \hspace{2pt}
+\text{exp} \left\{ -\frac{nn^{-1}\sum_1^n(x_i-\mu)^2}{2\sigma^2} \right\}1
+\]
+
+\end{enumerate}
+
+\section{6.2.11}
+\begin{enumerate}[(i)]
+\item
+\[
+f_X(x) = \sigma^{-n} \text{exp} \left\{ -\sum_1^n (x_i-\mu)/\sigma \right\}
+I(x_{(1)}>\mu) = 
+\]
+
+\[
+\sigma^{-n} \text{exp} \left\{ -\sum_1^n (x_i-\mu)/\sigma \right\}
+\text{exp} \{ \mu n/\sigma \} I(x_{(1)}>\mu)
+\]
+
+\hspace{3em}
+
+\item
+\[
+f_X(x) = \sigma^{-n} \text{exp} \left\{ -nn^{-1}\sum_1^n (x_i-\mu)/\sigma \right\}
+I(x_{(1)}>\mu)
+\]
+
+\hspace{3em}
+
+\item
+\[
+f_X(x) = \sigma^{-n} \exp \left\{ -\sum_1^n (x_i-\mu)/\sigma \right\}
+I(x_{(1)}>\mu) =
+\]
+
+\[
+\sigma^{-n} \exp \left\{ -\sum_1^n [(x_i-x_{(1)}) - (\mu - x_{(1)})]/\sigma \right\} I(x_{(1)}>\mu) =
+\]
+
+\[
+\sigma^{-n} \exp \left\{ - \left[ \left(\sum_1^n x_i - x_{(1)} \right) - n\mu + nx_{(1)} \right] /\sigma \right\} I(x_{(1)}>\mu)
+\]
+
+\end{enumerate}
+
+\section{6.2.13}
+\[
+f_X(x) = I \left( \theta - \frac{1}{2} < X_{(1)} \right)
+I\left(X_{(n)} < \theta + \frac{1}{2} \right)1
+\]
+
+\section{6.2.16}
+\[
+f_X(x) = 2^n\theta^{-n} \exp \left\{ - \left( \sum_1^n x_i^2 \right) /\theta \right\} \left( \prod_1^n x_i \right) I(x_{(1)} > 0)
+\]
+
+\end{document}
