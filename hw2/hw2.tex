@@ -1,0 +1,280 @@
+\documentclass{article}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{enumerate}
+\author{Michael Anderson}
+\title{Homework 2}
+\begin{document}
+\setlength{\parskip}{1em}
+\maketitle
+\center{ST562}
+\center{Prof. Di}
+\flushleft
+
+\section{6.3.2}
+
+\[
+f_X(x) = \sigma^{-n} \exp \left\{-\sum_1^n (x_i-\mu)/\sigma \right\}
+I(x_{(1)}>\mu)
+\]
+
+\begin{enumerate}[(i)]
+
+\item
+\[
+f_X(x)/f_X(y) = \exp \left\{ \left( \sum_{i=1}^n y_i - \sum_{j=1}^n x_j \right)
+/\sigma \right\}
+\frac{I(x_{(1)}>\mu)}{I(y_{(1)}>\mu)}
+\]
+
+Let $A = I(x_{(1)}>\mu)/I(y_{(1)}>\mu)$. Suppose $x_{(1)} > y_{(1)}$.
+Then consider the following three possible cases for the value of $\mu$
+relative to the order statistics:
+
+\[
+\left\{ \begin{array}{l l}
+A = 0/0 & \text{if } \mu > x_{(1)} \\
+A = 1/0 & \text{if } x_{(1)} > \mu > y_{(1)} \\
+A = 1 & \text{if } y_{(1)} > \mu \\
+\end{array} \right.
+\]
+
+Since the above shows that in this instance the value of $A$,
+and by extension the value of the entire likelihood
+ratio, is dependent on $\mu$, $x_{(1)} \le y_{(1)}$ to make the likelihood
+ratio not dependent on $\mu$. Now supposing $x_{(1)} < y_{(1)}$, a symmetric
+argument to the above will show
+that $x_{(1)} \ge y_{(1)}$. So $x_{(1)} = y_{(1)}$ to make the likelihood
+ratio not depend on $\mu$, and so $x_{(1)}$ is minimally sufficient for
+$\mu$. 
+
+\item
+
+Again:
+
+\[
+f_X(x)/f_X(y) = \exp \left\{ \left( \sum_{i=1}^n y_i - \sum_{j=1}^n x_j \right)
+/\sigma \right\}
+\frac{I(x_{(1)}>\mu)}{I(y_{(1)}>\mu)}
+\]
+
+$\sum_{j=1}^n x_i = \sum_{i=1}^n y_j$ in order to make $\sigma$ drop out.
+Since
+
+\[
+n^{-1} \sum_1^n (x_i-\mu) = n^{-1} 
+\left( \left[\sum_1^n x_i\right] - \mu n \right)
+\]
+
+and since $n$ and $\mu$ are known, $n^{-1} \sum_1^n(x_i - \mu$)
+is a function of $\sum_1^n x_i$ and is minimally sufficient for $\sigma$.
+
+\item
+
+Again:
+
+\[
+f_X(x)/f_X(y) = \exp \left\{ \left( \sum_{i=1}^n y_i - \sum_{j=1}^n x_j \right)
+/\sigma \right\}
+\frac{I(x_{(1)}>\mu)}{I(y_{(1)}>\mu)}
+\]
+
+Clearly need $\sum_{i=1}^n x_i = \sum_{j=1}^n x_j$ and $x_{(1)} = y_{(1)}$ to
+eliminate both $\mu$ and $\sigma$, making $(x_{(1)}, \sum_1^n x_i)$
+minimally sufficient. Since
+
+\[
+\left(x_{(1)}, \sum_1^n[x_i-x_{(1)}] \right) = 
+\left(x_{(1)}, \left[\sum_1^n x_i \right] - nx_{(1)} \right)
+\]
+
+$\left(x_{(1)}, \sum_1^n[x_i-x_{(1)}] \right)$ is a function of
+$(x_{(1)}, \sum_1^n x_i)$ and is minimally sufficient.
+
+\end{enumerate}
+
+\section{6.3.8}
+
+\[
+f_X(x) = \frac{1}{(2\pi\theta^2)^{-n/2}}
+\exp \left\{ - \sum_1^n(x_i-\theta)^2/(2\theta^2) \right\}
+\]
+
+\[
+= \frac{1}{(2\pi\theta^2)^{-n/2}}
+\exp \left\{ - \sum_1^n(x_i^2-2x_i\theta+\theta^2)/(2\theta^2) \right\}
+\]
+
+\[
+= \frac{1}{(2\pi\theta^2)^{-n/2}}
+\exp \left\{-\frac{\sum_1^n x_i^2}{2\theta^2} + \frac{2 \sum_1^n x_i\theta}
+{2\theta^2} - \frac{n\theta^2}{2\theta^2} \right\}
+\]
+
+
+\[
+= A(\theta) \exp \left\{-\frac{\sum_1^n x_i^2}{2\theta^2} +
+\frac{\sum_1^n x_i}{\theta} \right\}
+\]
+
+A distribution with the given pdf is not a member of the 2-parameter
+exponential family, because the parameter vector contains only one element.
+It is however part of the \emph{curved exponential family}, as defined in the
+class notes.
+
+To apply Theorem 3 from the notes, let $R_1 = \sum_1^n x_i^2$, and
+$\eta_1 = -1/(2\theta)$, and $R_2 = \sum_1^n x_i$, and $\eta_2 = \theta$. Since
+$R_1$ and $R_2$ are linearly independent, we get the following minimal
+sufficient statistic $T$:
+
+\[
+T = (R_1,R_2) = \left(\sum_1^n x_i^2, \sum_1^n x_i\right)
+\]
+
+\section{6.3.9}
+\[
+f_X(x) = \frac{1}{(2\pi\theta)^{-n/2}}
+\exp \left\{ - \sum_1^n(x_i-\theta)^2/(2\theta) \right\}
+\]
+
+\[
+= \frac{1}{(2\pi\theta)^{-n/2}}
+\exp \left\{ - \sum_1^n(x_i^2-2x_i\theta+\theta^2)/(2\theta) \right\}
+\]
+
+\[
+= \frac{1}{(2\pi\theta)^{-n/2}}
+\exp \left\{-\frac{\sum_1^n x_i^2}{2\theta} + \frac{2 \sum_1^n x_i\theta}
+{2\theta} - \frac{n\theta^2}{2\theta} \right\}
+\]
+
+
+\[
+= A(\theta)h(x) \exp \left\{-\frac{\sum_1^n x_i^2}{2\theta^2} \right\}
+\]
+
+As in the last problem, this distribution is not a 2-parameter exponential.
+
+Here Theorem 3 applies because the family is full rank. Let
+$R_1 = \sum_1^n x_i^2$ and $\eta_1 = -1/(2\theta^2)$. Then the statistic
+$T = \sum_1^n x_i^2$ is minimally sufficient.
+
+\section{6.3.12}
+\[
+f_X(x) = (2\theta)^{-n} \ I(-\theta < x_{(1)} < \theta) \ 
+I(-\theta < x_{(n)} < \theta)
+\]
+
+\[
+f_X(x)/f_X(y) = \frac{I(-\theta < x_{(1)} < \theta) \ 
+I(-\theta < x_{(n)} < \theta)}
+{I(-\theta < y_{(1)} < \theta) \ I(-\theta < y_{(n)} < \theta)}
+\]
+
+\[
+= \frac{I(|x_{(1)}| < \theta) \ I(|x_{(n)}| < \theta)}
+{I(|y_{(1)}| < \theta) \ I(|y_{(n)}| < \theta)}
+\]
+
+\[
+\frac{I(\max(|x_{(1)}|,|x_{(n)}|) < \theta)}
+{I(\max(|y_{(1)}|,|y_{(n)}|) < \theta)}
+\]
+
+This suggests the minimum statistic $T = \max(|x_{(1)}|,|x_{(n)}|)$
+
+\section{6.3.13}
+
+\[
+f_{X,Y}(x,y) = \frac{1}{(2\pi\sigma^2)^{(m+n)/2}}
+\exp \left\{- \left[\sum_{i=1}^m(x_i-\mu_1)^2+\sum_{j=1}^n(y_j-\mu_2)^2\right] /(2\sigma^2)\right\}
+\]
+
+\[
+=\frac{1}{(2\pi\sigma^2)^{(m+n)/2}}
+exp \left\{ -\frac{\sum_{i=1}^m x_i^2 + \sum_{j=1}^n y_j^2}{2\sigma^2} +
+\frac{\sum_{i=1}^m x_i\mu_1}{\sigma^2} + \frac{\sum_{j=1}^n y_j\mu_2}{\sigma^2}
+ - \frac{\mu_1^2}{2\sigma^2} - \frac{\mu_2^2}{2\sigma^2} \right\}
+\]
+
+\[
+= A(\theta) 
+\exp \left\{ -\frac{\sum_{i=1}^m x_i^2 + \sum_{j=1}^n y_j^2}{2\sigma^2} +
+\frac{\sum_{i=1}^m x_i\mu_1}{\sigma^2} + \frac{\sum_{j=1}^n y_j\mu_2}{\sigma^2}
+\right\}
+\]
+
+This family is full rank, so apply Theorem 3. 
+Let $R_1 = \sum_{i=1}^m x_i^2 + \sum_{j=1}^n y_j^2$, and
+$R_2 = \sum_{i=1}^m x_i$, and $R_3 = \sum_{j=1}^n y_j$ to get the following
+minimal sufficient statistic by Theorem 3:
+
+\[
+T = \left(\sum_{i=1}^m x_i^2 + \sum_{j=1}^n y_j^2, \ \ 
+\sum_{i=1}^m x_i, \ \ \sum_{j=1}^n y_j\right)
+\]
+
+\section{6.3.15}
+
+\[
+f_{X,Y}(x,y) = 
+[\beta^{\alpha}\Gamma(\alpha)]^{-m}[k\beta^{\alpha}\Gamma(\alpha)]^{-n}
+\exp \left\{-\frac{\sum_{i=1}^n x_i}{\beta} 
+-\frac{\sum_{j=1}^n y_j}{k\beta}\right\}
+\prod_{i=1}^mx_i^{\alpha-1}\prod_{j=1}^ny_j^{\alpha-1}
+\]
+
+\[
+= A(\theta) 
+\exp \left\{ \left[-\frac{k\sum_{i=1}^n x_i + \sum_{j=1}^n y_j}{k\beta}
+\right] + \log \left[ \prod_{i=1}^mx_i^{\alpha-1}\prod_{j=1}^ny_j^{\alpha-1}
+\right] \right\}
+\]
+
+\[
+= A(\theta) 
+\exp \left\{ \left[-\frac{k\sum_{i=1}^n x_i + \sum_{j=1}^n y_j}{k\beta}
+\right] + (\alpha-1)\log \left[ \prod_{i=1}^mx_i\prod_{j=1}^ny_j
+\right] \right\}
+\]
+
+This family is full rank, so apply Theorem 3.
+Factoring functions of $\theta$ out of each term in the exponent, and treating
+$log$ as an invertible function can give the following minimal sufficient
+statistic:
+
+\[
+T = \left( k\sum_{i=1}^n x_i + \sum_{j=1}^n y_j, 
+\ \ \prod_{i=1}^mx_i\prod_{j=1}^ny_j \right)
+\]
+
+\section{6.3.18}
+
+\[
+f_{X,Y}(x,y) = (2\pi\sigma^2)^{-m/2}(2\pi k\sigma^2)^{-n/2}
+\exp \left\{-\frac{\sum_{i=1}^m(x_i-\mu)^2}{2\sigma^2}
+-\frac{\sum_{j=1}^n y_j^2}{2k\sigma^2} \right\}
+\]
+
+\[
+= (2\pi\sigma^2)^{-m/2}(2\pi k\sigma^2)^{-n/2}
+\exp \left\{-\frac{\sum_{i=1}^mx_i^2}{2\sigma^2} +
+\frac{\mu\sum_{i=1}^m x_i}{\sigma^2} - \frac{m\mu^2}{2\sigma^2}
+-\frac{\sum_{j=1}^n y_j^2}{2k\sigma^2} \right\}
+\]
+
+\[
+= A(\theta) \exp \left\{-\frac{k\sum_{i=1}^mx_i^2+\sum_{j=1}^ny_i^2}{2k\sigma^2}
++ \frac{\mu\sum_{i=1}^m x_i}{\sigma^2} \right\}
+\]
+
+This family is full rank, so apply Theorem 3. Factoring functions of $\theta$
+out of the terms
+in the exponential gives the following minimally sufficient statistic:
+
+\[
+T = \left(k\sum_{i=1}^mx_i^2+\sum_{j=1}^ny_i^2, \ \ \sum_{i=1}^m x_i \right)
+\]
+
+\end{document}
